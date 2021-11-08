@@ -8,6 +8,12 @@ let blockFlipCards = false;
 let randomPosition = 0;
 let numberOfMoves = 0;
 
+let seconds = 00;
+let tens = 00;
+let appendTens = document.getElementById("tens");
+let appendSeconds = document.getElementById("seconds");
+let interval;
+
 function flip (cardToFlip) {
     console.log(blockFlipCards);
     if (blockFlipCards) return;
@@ -17,7 +23,8 @@ function flip (cardToFlip) {
 
     if (!playerFlippedCard) {
         playerFlippedCard = true;
-        card1 = cardToFlip;        
+        card1 = cardToFlip;    
+        interval = setInterval(startTimer, 10);    
     
     } else {
         playerFlippedCard = false;
@@ -78,7 +85,9 @@ function randomCardsPosition () {
 }
 
 function youWon () {
-    alert(`YOU WON!!!\n\rYou nailed it in ${numberOfMoves} moves!`);
+    alert(`CONGRATULATIONS!!! YOU WON!!!
+    \n\rYou nailed it in ${seconds} seconds and ${tens} tens of seconds.
+    \n\rIt took ${numberOfMoves} moves to win!`);
 
     let playAgain = prompt("Do you want to smash this game again?");
     playAgain = playAgain.toLowerCase();
@@ -86,6 +95,31 @@ function youWon () {
     if (playAgain === "yes") {
         document.location.reload(true);
     }
+}
+
+function startTimer() {
+    tens++;
+
+    if (tens < 9) {
+        appendTens.innerHTML = "0" + tens;
+    }
+
+    if (tens > 9) {
+        appendTens.innerHTML = tens;
+    }
+
+    if (tens > 99) {
+        seconds++;
+        appendSeconds.innerHTML = "0" + seconds;
+        tens = 0;
+        appendTens.innerHTML = "0" + 0;
+    }
+
+    if (seconds > 9) {
+        appendSeconds.innerHTML = seconds;
+    }
+
+
 }
 
 function main () {

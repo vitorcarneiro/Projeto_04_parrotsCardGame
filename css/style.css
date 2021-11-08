@@ -10,6 +10,7 @@ body {
     gap: 7vh;
 
     padding-top: 5vh;
+    
 }
 
 h1 {
@@ -95,4 +96,14 @@ main {
 
 .noCard {
     display: none;
+}
+
+.stopWatch {
+    position: fixed;
+    right: 5vw;
+    top: 1vh;
+
+    font-size: 25px;
+    font-weight: bold;
+    color: #75B79E;
 }
