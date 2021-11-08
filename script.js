@@ -1,10 +1,12 @@
 let cards = document.querySelectorAll(".card");
+let endGameCheck = document.querySelectorAll(".flip");
 
 let numberOfCards = 0;
 let card1, card2;
 let playerFlippedCard = false;
 let blockFlipCards = false;
 let randomPosition = 0;
+let numberOfMoves = 0;
 
 function flip (cardToFlip) {
     console.log(blockFlipCards);
@@ -20,33 +22,46 @@ function flip (cardToFlip) {
     } else {
         playerFlippedCard = false;
         card2 = cardToFlip;
-
     }
 
     if (card1.firstElementChild.innerHTML === card2.firstElementChild.innerHTML) {
        rightCards ();
-    
+       
     } else {
         blockFlipCards = true;
-
+        
         setTimeout (wrongCards, 1500);
     }
-    
+
+    console.log(`numberOfMoves = ${numberOfMoves}`);
     console.log("end flip function");
 }
 
 function rightCards () {
-
-    card1.removeAttribute("onclick");
-    card2.removeAttribute("onclick");
-
-    card1 = null;
-    card2 = null;
+    numberOfMoves++;
+    endGameCheck = document.querySelectorAll(".flip");
     
-    console.log("It IS a match!");
+    if (endGameCheck.length === numberOfCards) {
+        setTimeout (youWon, 500);
+
+    } else {
+        card1.removeAttribute("onclick");
+        card2.removeAttribute("onclick");
+        
+        card1 = null;
+        card2 = null;
+        
+        console.log("It IS a match!");
+        
+        console.log(endGameCheck);
+        console.log(endGameCheck.length);
+    }
+
 }
 
 function wrongCards () {
+    numberOfMoves++;
+
     card1.classList.remove("flip");
     card2.classList.remove("flip");
 
@@ -62,6 +77,11 @@ function randomCardsPosition () {
     console.log(`randomPosition = ${randomPosition}`);
 }
 
+function youWon () {
+    alert (`YOU WON!!!\n\rYou nailed it in ${numberOfMoves} moves!`);
+
+}
+
 function main () {
     numberOfCards = parseInt(prompt ("How many cards do you want to play with?"));
 
@@ -69,7 +89,8 @@ function main () {
         alert ("You must select a even number of cards between 4 and 14!");
         main();
 
-    } else {
+    }
+    else {
         console.log("OK");
         console.log(`numberOfCards = ${numberOfCards}`);
         for (let i = 13; i > numberOfCards - 1; i--) {
@@ -87,5 +108,7 @@ function main () {
             console.log("fechou");
         }
     }
+
 }
+
 main();
