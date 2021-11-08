@@ -1,8 +1,10 @@
 let cards = document.querySelectorAll(".card");
 
+let numberOfCards = 0;
 let card1, card2;
 let playerFlippedCard = false;
 let blockFlipCards = false;
+let randomPosition = 0;
 
 function flip (cardToFlip) {
     console.log(blockFlipCards);
@@ -55,24 +57,35 @@ function wrongCards () {
     blockFlipCards = false;
 }
 
-function randomCards () {
-
+function randomCardsPosition () {
+    randomPosition = Math.floor(Math.random() * numberOfCards);
+    console.log(`randomPosition = ${randomPosition}`);
 }
 
 function main () {
-    const numberOfCards = parseInt(prompt ("How many cards do you want to play with?"));
-    
+    numberOfCards = parseInt(prompt ("How many cards do you want to play with?"));
+
     if (isNaN(numberOfCards) || numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 !== 0) {
         alert ("You must select a even number of cards between 4 and 14!");
         main();
 
     } else {
-        alert ("OK");
+        console.log("OK");
         console.log(`numberOfCards = ${numberOfCards}`);
-        for (let i = 0; i < (14 - numberOfCards); i++) {
+        for (let i = 13; i > numberOfCards - 1; i--) {
             cards[i].remove();
+        }
+
+        for (i = 0; i < numberOfCards; i++) {
+            console.log("entrou");
+            console.log(i);
+
+            randomCardsPosition();
+
+            cards[i].style.order = randomPosition;
+            console.log(cards[i].style.order);
+            console.log("fechou");
         }
     }
 }
-
 main();
