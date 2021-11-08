@@ -1,5 +1,4 @@
 let cards = document.querySelectorAll(".card");
-console.log(cards);
 
 let card1, card2;
 let playerFlippedCard = false;
@@ -69,15 +68,11 @@ function main () {
 
     } else {
         alert ("OK");
-
-        for (let i = 13; i < 12 - numberOfCards; i--) {
-            cards.pop();
+        console.log(`numberOfCards = ${numberOfCards}`);
+        for (let i = 0; i < (14 - numberOfCards); i++) {
+            cards[i].remove();
         }
-
-
     }
-
-    console.log(cards);
 }
 
 main();
