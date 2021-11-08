@@ -56,7 +56,7 @@ main {
     cursor: pointer;
 }
 
-.frontFace, .backFace {
+.front-face, .back-face {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -66,14 +66,14 @@ main {
     backface-visibility: hidden;
 }
 
-.backFace {
+.back-face {
     background-image: url("/images/front.png");
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: contain;
 }
 
-.frontFace img{
+.front-face img{
     width: 100%;
     margin: auto;
     object-fit: contain;
@@ -94,11 +94,7 @@ main {
     cursor: not-allowed;
 }
 
-.noCard {
-    display: none;
-}
-
-.stopWatch {
+.stop-watch {
     position: fixed;
     right: 5vw;
     top: 1vh;
