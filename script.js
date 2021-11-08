@@ -78,8 +78,14 @@ function randomCardsPosition () {
 }
 
 function youWon () {
-    alert (`YOU WON!!!\n\rYou nailed it in ${numberOfMoves} moves!`);
+    alert(`YOU WON!!!\n\rYou nailed it in ${numberOfMoves} moves!`);
 
+    let playAgain = prompt("Do you want to smash this game again?");
+    playAgain = playAgain.toLowerCase();
+
+    if (playAgain === "yes") {
+        document.location.reload(true);
+    }
 }
 
 function main () {
