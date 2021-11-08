@@ -15,7 +15,6 @@ let appendSeconds = document.getElementById("seconds");
 let interval;
 
 function flip (cardToFlip) {
-    console.log(blockFlipCards);
     if (blockFlipCards) return;
     if (cardToFlip === card1) return;
 
@@ -39,9 +38,6 @@ function flip (cardToFlip) {
         
         setTimeout (wrongCards, 1500);
     }
-
-    console.log(`numberOfMoves = ${numberOfMoves}`);
-    console.log("end flip function");
 }
 
 function rightCards () {
@@ -57,13 +53,7 @@ function rightCards () {
         
         card1 = null;
         card2 = null;
-        
-        console.log("It IS a match!");
-        
-        console.log(endGameCheck);
-        console.log(endGameCheck.length);
     }
-
 }
 
 function wrongCards () {
@@ -74,14 +64,12 @@ function wrongCards () {
 
     card1 = null;
     card2 = null;
-    console.log("It is NOT a match!");
 
     blockFlipCards = false;
 }
 
 function randomCardsPosition () {
     randomPosition = Math.floor(Math.random() * numberOfCards);
-    console.log(`randomPosition = ${randomPosition}`);
 }
 
 function youWon () {
@@ -131,24 +119,16 @@ function main () {
 
     }
     else {
-        console.log("OK");
-        console.log(`numberOfCards = ${numberOfCards}`);
         for (let i = 13; i > numberOfCards - 1; i--) {
             cards[i].remove();
         }
 
         for (i = 0; i < numberOfCards; i++) {
-            console.log("entrou");
-            console.log(i);
-
             randomCardsPosition();
 
             cards[i].style.order = randomPosition;
-            console.log(cards[i].style.order);
-            console.log("fechou");
         }
     }
-
 }
 
 main();
