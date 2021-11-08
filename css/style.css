@@ -39,17 +39,60 @@ main {
     height: 146px;
     width: 117px;
     
+    background-color: #A7E9AF;
+
     border: 1px solid #99CEA8;
     box-sizing: border-box;
     border-radius: 5px;
-    
+
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.frontFace, .backFace {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
     background-color: #A7E9AF;
+
+    backface-visibility: hidden;
+}
+
+.backFace {
     background-image: url("/images/front.png");
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: contain;
 }
 
-.card:hover {
-    cursor: pointer;
+.frontFace img{
+    width: 100%;
+    margin: auto;
+    object-fit: contain;
+
+    transform: rotateY(180deg);
+}
+
+.card:active {
+    transform: scale(.90);
+    transition: transform .2s;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+.card.flip:hover {
+    cursor: not-allowed;
+}
+
+.noCard {
+    display: none;
 }
